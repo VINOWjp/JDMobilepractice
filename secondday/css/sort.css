@@ -1,0 +1,27 @@
+html,body {
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+}
+.sort {
+  width: 100%;
+  height: 100%;
+  margin:  0 auto;
+}
+header {
+	width: 100%;
+	height: 40px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background-image: url("../image/header-bg.png");
+  background-size: 1px 44px;
+  background-repeat: repeat-x;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+
+}
+header .search-box {
+  width: 100%;
+  height: 100%;
+}
