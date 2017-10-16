@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<style>
+		html,body {
+			width: 100%;
+			height: 100%;
+			margin:0;
+			padding:0;
+		}
+		.box {
+			width: 100px;
+			height: 100px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	 <script>
+	 	//声明变量，获取元素
+	 	var box = document.querySelector(".box");
+	 	var startx,starty,endx,endy,starttime,endtime;
+	 	//获取触摸开始的事件对象中需要的对象数据；
+	 	box.addEventListener('touchstart',function(e){
+	 		var touches = e.targetTouches[0];
+	 		    startx = touches.clientX;
+	 		    starty = touches.clientY;
+	 		    starttime = new Date().getTime();
+	 	});
+	 	//获取触摸事件结束事件对象中需要对象的数据；
+	 	box.addEventListener('touchend',function(e){
+	 		var touches = e.changedTouches[0];
+	 		    endx = touches.clientX;
+	 		    endy = touches.clientY;
+	 		    endtime = new Date().getTime();
+	 		   // 进行判断比较；
+	 		   if(Math.abs(endx-startx)<5 && Math.abs(endy-starty)<5 && (endtime-starttime)<300){
+	 		   	   alert('tab单击事件被触发啦！');
+	 		   }
+
+	 	})
+
+	 </script>
+</body>
+</html>

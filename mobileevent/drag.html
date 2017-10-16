@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>drag</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<style>
+		html,body {
+			width: 100%;
+			height: 100%;
+			padding: 0;
+			margin:0;
+		}
+		.box {
+			width: 100px;
+			height: 100px;
+			position: absolute;
+			top: 10px;
+			left: 10px;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div class="box"></div>
+	<script>
+		//1.获取需要的元素，声明需要的变量；
+		var box =document.querySelector('.box');
+		var startx,starty,endx,endy,_left,_top;
+		box.addEventListener('touchstart',function(e){
+			var touches = e.targetTouches[0];
+			    startx = touches.clientX;
+			    starty = touches.clientY;
+			    _left = this.offsetLeft;
+			    _top = this.offsetTop;
+
+		});
+		box.addEventListener('touchmove',function(e){
+			var touches = e.changedTouches[0];
+			    endx = touches.clientX;
+			    endy = touches.clientY;
+			    this.style.left = _left + (endx-startx) +'px';
+			    this.style.top = _top + (endy-starty) + 'px';
+		})
+
+	</script>
+</body>
+</html>
