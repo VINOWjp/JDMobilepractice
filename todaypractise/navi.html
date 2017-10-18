@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>导航条</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>导航条</title>
+
+    <!-- Bootstrap -->
+    <link href="./lib/css/bootstrap.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    	.wjs-nav {
+    		height: 80px;
+    		background-color: #f8f8f8;
+    	}
+    	.navbar.navbar-default {
+    		border:none;
+    	}
+    	.navbar-nav>li>a {
+    		line-height: 80px;
+    		padding:0 15px;
+    	}
+    	.navbar-brand {
+    		margin-left:20px;
+    		margin-right:20px;
+    		height: 80px;
+    		line-height: 80px;
+    		padding:0px;
+    		padding-top:calc(( 80px - 55px ) / 2);
+    	}
+    	@media screen and (max-width:768px) {
+    		.navbar-nav>li>a {
+    		height:40px;
+            line-height:  40px;
+    	}
+    		  
+
+    	}
+    </style>
+</head>
+<body>
+	<div class="wjs-nav">
+		<div class="container">
+			<div class="row">
+				<nav class="navbar navbar-default">
+                  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">
+      	<img src="./images/logo.png" alt="">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                      <ul class="nav navbar-nav">
+                     <li class="active"><a href="#">我要投资 <span class="sr-only">(current)</span></a></li>
+                   <li><a href="#">我要贷款</a></li>
+                    <li><a href="#">平台介绍</a></li>
+                  <li><a href="#">新手介绍</a></li>
+                  <li><a href="#">最新动态</a></li>
+                 <li><a href="#">微平台</a></li>
+                     </ul>
+               <ul class="nav navbar-nav navbar-right hidden-sm">
+                        <li><a href="#">个人中心</a></li>
+                </ul>
+                       </div><!-- /.navbar-collapse -->
+                   </div><!-- /.container-fluid -->
+                 </nav>
+	
+            </div>
+        </div>
+</div>
+<script src="./js/jQuery.min.js"></script>
+<script src="./lib/js/bootstrap.min.js"></script>
+	
+</body>
+</html>
