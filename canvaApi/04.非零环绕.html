@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas>
+	<!-- canvas 
+		1.兼容性非常不错 不支持canvas的浏览器中 会吧canvas解析成普通div盒子 因此大部分时候 会在canvas元素中加入文本内容提示 用户浏览器是否支持canvas
+		2.可以为canvas设置宽高属性但是不能在css样式中设置，需要在行内或者 js中设置
+		 -->
+	</canvas>
+	
+</body>
+<script>
+	//1.设置画布 canvas的宽高等属性
+	  var canvas = document.querySelector('canvas');
+	      canvas.width = 600;
+	      canvas.height = 600;
+	      canvas.style.border = '1px solid #000';
+	//2. 获得画笔（2d / webgl）;
+	  var context = canvas.getContext('2d');
+	    //单笔画出的图形 对齐进行渲染的时候，判断当前的 区域是否会被渲染，遵循的是非零环绕，在当前区域内引出一条直线，一定要引到 图形最外面，然后看经过该直线上的画图形的回路，如果为顺时针则为+1，逆时针为-1，最后计算该直线上的和，如果是0就不会渲染，不是0就会渲染；
+
+	    // 例子：环绕矩形；
+	        context.moveTo(100,100);
+	        context.lineTo(300,100);
+	        context.lineTo(300,200);
+	        context.lineTo(100,200);
+	        context.lineTo(100,100);
+
+	      //  不是0的情况
+	      // context.moveTo(110,110);
+	      // context.lineTo(290,110);
+	      // context.lineTo(290,190);
+	      // context.lineTo(110,190);
+	      // context.lineTo(110,110);
+	      // context.fill(); 
+
+
+	     // 是零的情况下( 让里面的矩形画的时候是逆时针旋转的)
+	          context.moveTo(290,110);  
+	          context.lineTo(110,110);
+	          context.lineTo(110,190);
+	          context.lineTo(290,190);
+	          context.lineTo(290,110);
+	          context.fill(); 
+
+
+</script>
+</html>

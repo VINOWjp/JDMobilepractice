@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas</title>
+</head>
+<body>
+	<canvas>
+	<!-- canvas 
+		1.兼容性非常不错 不支持canvas的浏览器中 会吧canvas解析成普通div盒子 因此大部分时候 会在canvas元素中加入文本内容提示 用户浏览器是否支持canvas
+		2.可以为canvas设置宽高属性但是不能在css样式中设置，需要在行内或者 js中设置
+		 -->
+	</canvas>
+	
+</body>
+<script>
+	//1.设置画布 canvas的宽高等属性
+	  var canvas = document.querySelector('canvas');
+	      canvas.width = 600;
+	      canvas.height = 600;
+	      canvas.style.border = '1px solid #000';
+	//2. 获得画笔（2d / webgl）;
+	  var context = canvas.getContext('2d');
+	    var sWidth =10; //设置一个宽高都为10的小方块;
+	    var data = {
+	    	x:100,
+	    	y:150
+	    } //定义一个模拟数据 是小方块的中心的坐标;
+	    var tx = data.x-sWidth/2;
+	    var ty = data.y-sWidth/2;
+	    context.fillRect(tx,ty,sWidth,sWidth);
+
+
+
+	        
+
+</script>
+</html>
