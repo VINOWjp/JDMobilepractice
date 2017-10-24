@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>随机颜色的圆形</title>
+</head>
+<body>
+	<canvas></canvas>
+	<script>
+		var canvas = document.querySelector('canvas');
+		canvas.width = 600;
+		canvas.height = 600;
+		canvas.style.border = '1px solid #000';
+		var context = canvas.getContext('2d');
+	// 利用面向对象封装一个构造函数；
+	
+		var zeroX = canvas.width/2;
+		var zeroY = canvas.height/2;
+		var radius  = 150;
+
+	 //随机颜色方法
+	function color (){
+	 	var r = Math.floor(Math.random()*256);
+	 	var g = Math.floor(Math.random()*256);
+	 	var b = Math.floor(Math.random()*256);
+	 	return 'rgb('+r+','+g+','+b+')';
+	 }
+	setInterval(function(){
+		var startAngle = 0;
+         var n = 180;
+		for(var i=0;i<n;i++ ){
+			context.beginPath();
+			context.moveTo(zeroX,zeroY);
+			context.arc(zeroX,zeroY,radius,startAngle,startAngle+2*Math.PI/180);
+			context.fillStyle = color();			
+			context.closePath();
+			context.fill();
+			startAngle = startAngle+2*Math.PI/180;
+		}
+	},100)
+</script>
+</body>
+</html>
