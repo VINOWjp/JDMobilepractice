@@ -1,0 +1,82 @@
+{{extend ('./layout')}}
+{{#block ('main')}}
+            <!-- 写文章 -->
+            <div class="body blog">
+                <!-- 面包屑 -->
+                <ol class="breadcrumb">
+                    <li><a href="javascript:;">文章管理</a></li>
+                    <li class="active">写文章</li>
+                </ol>
+                <div class="settings">
+                    <form action="{{kind}}" class="form-horizontal">
+                        {{#if(kind !== '/admin/add')}}
+                        <input type="hidden" name="id" value="{{data.id}}">
+                        {{/if}}
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">标题</label>
+                            <div class="col-xs-6">
+                                <input type="text" class="form-control input-sm" name="title" value="{{data.title}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">摘要</label>
+                            <div class="col-xs-6 ckeditor">
+                                <textarea name="brief" rows="5" class="form-control input-sm">{{data.brief}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">内容</label>
+                            <div class="col-xs-6">
+                                <textarea id="ckeditor" class="form-control input-sm" name="content">{{data.content}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-9">
+                                <input type="submit" value="保 存" class="btn btn-success btn-sm pull-right">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {{/block}}
+  {{#block ('script')}}
+    <script src="./assets/ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('ckeditor', {
+            toolbarGroups: [
+                { name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
+                { name: 'forms' },
+                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ] },
+                { name: 'paragraph',   groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ] },
+                { name: 'styles' },
+                { name: 'colors' }
+            ]
+        });
+         
+         $('form').on('submit',function(){
+            for (instance in CKEDITOR.instances){
+                CKEDITOR.instances[instance].updateElement();
+            }
+           
+            var that  = $(this);
+            var url = that.attr('action');
+            console.log(url);
+            $.ajax({
+                url:url,
+                type:'post',
+                data:that.serialize(),
+                success:function(infor){
+                    //console.log(infor);
+                    if(infor.code==10000){
+                        alert(infor.msg);
+                        location.href= '/admin/list';
+                    }
+                }
+
+            })
+            return false;
+         })
+         
+        
+    </script>
+    {{/block}}

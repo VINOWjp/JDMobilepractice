@@ -1,0 +1,9 @@
+10945 20:30:54
+  for (instance in CKEDITOR.instances)
+                CKEDITOR.instances[instance].updateElement();
+10945 20:31:39
+  if(!rows[0]){
+           return cb({
+                msg:'用户不存在'
+            })
+        }

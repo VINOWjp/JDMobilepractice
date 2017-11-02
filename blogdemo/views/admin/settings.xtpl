@@ -1,0 +1,112 @@
+{{extend ('./layout')}}
+{{#block ('main')}}
+            <!-- 个人资料 -->
+            <div class="body center">
+                <div class="settings">
+                    <form action="" class="form-horizontal">
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">头像</label>
+                            <div class="col-xs-2 preview">
+                                {{#if (list.avatar)}}
+                                <img src="{{list.avatar}}">
+                                {{else}}
+                                <img src="/admin/uploads/avatar/monkey.png">
+                                {{/if}}
+                                <input type="hidden" name="avatar">
+                                <input type="file" id="upfile">
+                                <div class="cover">
+                                    <i class="fa fa-upload"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">用户名</label>
+                            <div class="col-xs-5">
+                                <input id="avatar" type="text" class="form-control input-sm" name="name" value="{{list.name}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">性别</label>
+                            <div class="col-xs-3">
+                                <label class="radio-inline">
+                                    <input type="radio" {{#if(list.gender===0)}} checked {{/if}} value="0" name="gender"> 男
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" {{#if(list.gender===1)}} checked {{/if}} value="1"> 女
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label"></label>
+                            <div class="col-xs-5">
+                                <input type="text" class="form-control input-sm" name="phone" value="{{list.phone}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">就职公司</label>
+                            <div class="col-xs-5">
+                                <input type="text" class="form-control input-sm" name="company" value="{{list.company}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">个人主页</label>
+                            <div class="col-xs-5">
+                                <input type="text" class="form-control input-sm" name="homepage" value="{{list.homepage}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="col-xs-3 control-label">个性签名</label>
+                            <div class="col-xs-5 ckeditor">
+                                <textarea name="alt" rows="5" class="form-control input-sm"> {{list.alt}}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-8">
+                                <input type="submit" class="btn btn-success btn-sm pull-right" value="保 存">
+                                <a href="./repass.html" class="btn btn-link btn-sm pull-right">更改密码？</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            {{/block}}
+            {{#block ('script')}}
+            <script>
+                $('form').on('submit',function(){
+                    var that = $(this);
+                    $.ajax({
+                        url:'/admin/update',
+                        type:'post',
+                        data:that.serialize(),
+                        success:function(infor){
+                            if(infor.code==10000){
+                                alert(infor.msg);
+                                location.href = '/admin';
+                            }
+
+                        }
+                    })
+                    return false;
+                })
+                $('#upfile').on('change',function(){
+                    var data = new FormData;
+                    data.append('avatar',this.files[0])
+                    var xhr = new XMLHttpRequest;
+                         xhr.open('post','/admin/upfile');
+                         xhr.send(data);
+                         xhr.onreadystatechange = function(){
+                            if(xhr.readyState== 4 && xhr.status == 200){
+                                console.log(xhr.responseText);
+                                var data = JSON.parse(xhr.responseText);
+                                $(".preview img").attr('src','/'+data.path);
+                                $('input[name="avatar"]').val('/' + data.path);
+
+
+                            }
+                         }
+
+                })
+                
+            </script>
+            {{/block}}
+      
